@@ -12,9 +12,9 @@ public class Strand {
     float motionR, motionG, motionB;
     float r,g,b;
 
-    public void init(Random random) {
-        x = random.nextFloat() * 500;
-        y = random.nextFloat() * 500;
+    public void init(Random random, int size) {
+        x = random.nextFloat() * size;
+        y = random.nextFloat() * size;
         r = random.nextFloat() * 256;
         g = random.nextFloat() * 256;
         b = random.nextFloat() * 256;
@@ -29,12 +29,12 @@ public class Strand {
             f = 1;
         x += motionX / f;
         y += motionY / f;
-        f = (float) Math.sqrt(motionR * motionR + motionG * motionG + motionB * motionB);
+        f = (float) Math.sqrt(motionR * motionR + motionG * motionG + motionB * motionB) / 4;
         if(f < 1)
             f = 1;
-        r += motionR / f;
-        g += motionG / f;
-        b += motionB / f;
+        r = Math.max(0, Math.min(255, r + motionR / f));
+        g = Math.max(0, Math.min(255, g + motionG / f));
+        b = Math.max(0, Math.min(255, b + motionB / f));
         motionX /= 1.2f;
         motionY /= 1.2f;
         motionR /= 1.2f;

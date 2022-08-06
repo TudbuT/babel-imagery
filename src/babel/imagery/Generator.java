@@ -11,14 +11,14 @@ public class Generator {
     }
     
     public BufferedImage generate() {
-        BufferedImage image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
-        for(int n = 0; n < 10; n++) {
+        BufferedImage image = new BufferedImage(2000, 2000, BufferedImage.TYPE_INT_RGB);
+        for(int n = 0; n < 100; n++) {
             Strand strand = new Strand();
-            strand.init(random);
+            strand.init(random, 2000);
             for(int i = 0; i < 5000; i++) {
                 strand.randomMotion(random);
                 strand.move();
-                image.setRGB(strand.getX(500), strand.getY(500), strand.getColor());
+                image.setRGB(strand.getX(2000), strand.getY(2000), strand.getColor());
             }
         }
         return image;
